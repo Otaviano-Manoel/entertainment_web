@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+$pure-white: #fff;
+$red: #fc4747;
+$dark-blue: #10141e;
+$greyish-blue: #5a698f;
+$semi-dark-blue: #161d2f;
+
+@mixin font {
+  font-family: "Outfit", serif;
+}
+
+@mixin _font-weight($weight) {
+  @include font();
+  font-weight: $weight;
+}
+
+@mixin headingL {
+  @include _font-weight(300);
+  font-size: 32px;
+}
+
+@mixin headingM {
+  @include _font-weight(300);
+  font-size: 24px;
+}
+
+@mixin headingS {
+  @include _font-weight(500);
+  font-size: 24px;
+}
+
+@mixin headingXS {
+  @include _font-weight(500);
+  font-size: 18px;
+}
+
+@mixin bodyM {
+  @include _font-weight(300);
+  font-size: 15px;
+}
+
+@mixin bodyS {
+  @include _font-weight(300);
+  font-size: 13px;
+}
