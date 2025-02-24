@@ -1,9 +1,9 @@
-export interface Auth {
+export interface Client {
   email: string;
   image: string;
 }
 
-export const defaultAuth: Auth = {
+export const defaultClient: Client = {
   email: "",
   image: "",
 };

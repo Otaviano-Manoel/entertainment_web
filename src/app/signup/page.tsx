@@ -1,80 +1,49 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { RefObject, useRef } from "react";
 import styles from "@/app/login/login.module.scss";
-import { defaultAuthData } from "@/Interface/authData";
+import useEmail from "@/hooks/useEmail";
+import usePassword from "@/hooks/usePassword";
+import { validState } from "@/enum/validState";
+import useRepeatPassword from "@/hooks/useRepeatPassword";
+import useLocalDataClient from "@/hooks/useLocalDataClient";
+import { clientData } from "@/Interface/clientData";
 
 const SignUp = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-
-  const [errorEmail, setErrorEmail] = useState(false);
-  const [errorPassword, setErrorPassword] = useState(false);
-  const [errorRepeatPassword, setErrorRepeatPassword] = useState(false);
+  const { email } = useEmail();
+  const { password } = usePassword();
+  const { repeatPassword } = useRepeatPassword();
+  const { addDataClient } = useLocalDataClient();
+  const login = useRef<HTMLAnchorElement | null>(null);
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const auth = defaultAuthData;
-
-    const email = formData.get("email")?.toString();
-    const password = formData.get("password")?.toString();
-    const repeatPassword = formData.get("repeatPassword")?.toString();
-
     if (!validAll()) return;
 
-    console.log(email, password, repeatPassword);
-  };
+    const client: clientData = {
+      email: email.email,
+      image: "./image-avatar.png",
+      password: password.password,
+    };
+    
 
-  const handleSetEmail = (input: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(input.currentTarget.value);
-  };
-  const handleInvalidEmail = () => {
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    setErrorEmail(!regex.test(email));
-  };
-  const hasValueInEmail = (): boolean => {
-    return email !== "";
-  };
+    addDataClient(client);
 
-  const handleSetPassword = (input: React.ChangeEvent<HTMLInputElement>) => {
-    setErrorPassword(false);
-    setPassword(input.currentTarget.value);
-  };
-  const handleInvalidPassword = () => {
-    const b = !hasValueInPassword();
-    setErrorPassword(b);
-    return !b;
-  };
-  const hasValueInPassword = (): boolean => {
-    return password !== "";
-  };
+    console.log(client);
+    alert("All emails and passwords are saved in the browser cache.");
 
-  const handleSetRepeatPassword = (
-    input: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setErrorRepeatPassword(false);
-    setRepeatPassword(input.currentTarget.value);
-  };
-  const handleInvalidRepeatPassword = (): boolean => {
-    const b = repeatPassword !== password;
-    setErrorRepeatPassword(b);
-    return !b;
-  };
-  const hasValueInRepeatPassword = (): boolean => {
-    return repeatPassword !== "";
+    login.current?.click();
   };
 
   const validAll = () => {
-    const validEmail = hasValueInEmail();
-    const validPassword = handleInvalidPassword();
-    const validRepeatPassword = handleInvalidRepeatPassword();
+    const validEmail = email.thisEmailAccept();
+    const validPassword = password.thisPasswordAccept();
+    const validRepeatPassword = repeatPassword.thisRepeatPasswordAccept(
+      password.password
+    );
 
-    if (!validEmail) setErrorEmail(true);
-    if (!validPassword) setErrorPassword(true);
-    if (!validRepeatPassword) setErrorRepeatPassword(true);
+    console.log(validEmail, validPassword, validRepeatPassword);
 
     return validEmail && validPassword && validRepeatPassword;
   };
@@ -93,13 +62,18 @@ const SignUp = () => {
         <h1 className={styles.title}>Sign Up</h1>
         <label className={`${styles.containerInput}`} htmlFor="email">
           <input
-            className={`${styles.input} ${errorEmail ? styles.error : ""}   ${
-              hasValueInEmail() && !errorEmail ? styles.containsValue : ""
+            className={`${styles.input} ${
+              email.isValid === validState.ERROR ? styles.error : ""
+            }   ${
+              email.isNullOrEmpty === validState.ACCEPT &&
+              email.isValid === validState.ACCEPT
+                ? styles.containsValue
+                : ""
             }`}
-            onInvalid={handleInvalidEmail}
-            onChange={handleSetEmail}
-            onBlur={handleInvalidEmail}
-            value={email}
+            onInvalid={email.thisEmailAccept}
+            onChange={email.handleSetEmail}
+            onBlur={email.thisEmailAccept}
+            value={email.email}
             type="email"
             name="email"
             id="email"
@@ -107,7 +81,10 @@ const SignUp = () => {
           />{" "}
           <p
             className={`${styles.messageError} ${
-              errorEmail ? "" : styles.hidden
+              email.isValid === validState.ERROR ||
+              email.isNullOrEmpty === validState.ERROR
+                ? ""
+                : styles.hidden
             }`}
           >
             The email is wrong.
@@ -116,12 +93,19 @@ const SignUp = () => {
 
         <label className={`${styles.containerInput}`} htmlFor="password">
           <input
-            className={`${styles.input} ${errorPassword ? styles.error : ""} ${
-              hasValueInPassword() && !errorPassword ? styles.containsValue : ""
+            className={`${styles.input} ${
+              password.isValid === validState.ERROR ? styles.error : ""
+            } ${
+              password.isNullOrEmpty === validState.ACCEPT &&
+              password.isValid === validState.ACCEPT
+                ? styles.containsValue
+                : ""
             }`}
-            onChange={handleSetPassword}
-            onBlur={handleInvalidPassword}
-            value={password}
+            onChange={password.handleSetPassword}
+            onInvalid={password.thisPasswordAccept}
+            onBlur={password.thisPasswordAccept}
+            value={password.password}
+            minLength={4}
             type="password"
             name="password"
             id="password"
@@ -129,25 +113,31 @@ const SignUp = () => {
           />
           <p
             className={`${styles.messageError} ${
-              errorPassword ? "" : styles.hidden
+              password.isValid === validState.ERROR ||
+              password.isNullOrEmpty === validState.ERROR
+                ? ""
+                : styles.hidden
             }`}
           >
-            Can’t be empty
+            Minimum of 4 characters
           </p>
         </label>
 
         <label className={`${styles.containerInput}`} htmlFor="repeatPassword">
           <input
             className={`${styles.input} ${
-              errorRepeatPassword ? styles.error : ""
+              repeatPassword.isValid === validState.ERROR ? styles.error : ""
             } ${
-              hasValueInRepeatPassword() && !errorRepeatPassword
+              repeatPassword.isNullOrEmpty === validState.ACCEPT &&
+              repeatPassword.isValid === validState.ACCEPT
                 ? styles.containsValue
                 : ""
             }`}
-            onChange={handleSetRepeatPassword}
-            onBlur={handleInvalidRepeatPassword}
-            value={repeatPassword}
+            onChange={repeatPassword.handleSetRepeatPassword}
+            onBlur={() =>
+              repeatPassword.thisRepeatPasswordAccept(password.password)
+            }
+            value={repeatPassword.repeatPassword}
             type="password"
             name="repeatPassword"
             id="repeatPassword"
@@ -155,7 +145,10 @@ const SignUp = () => {
           />
           <p
             className={`${styles.messageError} ${
-              errorRepeatPassword ? "" : styles.hidden
+              repeatPassword.isValid === validState.ERROR ||
+              repeatPassword.isNullOrEmpty === validState.ERROR
+                ? ""
+                : styles.hidden
             }`}
           >
             The password is wrong.
@@ -166,7 +159,7 @@ const SignUp = () => {
         </button>
         <p className={styles.p}>
           Already have an account?{" "}
-          <a className={styles.link} href="/login">
+          <a ref={login} className={styles.link} href="/login">
             {" "}
             Login
           </a>
