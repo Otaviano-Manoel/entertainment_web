@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@use "@/styles/variables.scss" as *;
 
 html,
 body {
@@ -8,6 +8,7 @@ body {
 
 body {
   @include font();
+  color: $pure-white;
   background: $dark-blue;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

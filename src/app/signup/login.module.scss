@@ -1,0 +1,97 @@
+@use "@/styles/variables.scss" as *;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  gap: 82px;
+  margin: 0px 24px;
+
+  .form {
+    background-color: $semi-dark-blue;
+    display: grid;
+    columns: 1fr;
+    min-width: 320px;
+    width: 100%;
+    max-width: 400px;
+    padding: 32px;
+    gap: 24px;
+    border-radius: 20px;
+
+    .title {
+      @include headingL();
+      margin-bottom: 16px;
+    }
+
+    .containerInput {
+      display: flex;
+      cursor: pointer;
+
+      .input {
+        @include bodyM();
+        background-color: transparent;
+        border-width: 0px;
+        padding-bottom: 17px;
+        padding-left: 16px;
+        color: $pure-white;
+        border-bottom: 1px solid $greyish-blue;
+        cursor: pointer;
+
+        outline: none;
+        width: 100%;
+
+        &.error {
+          border-bottom-color: $red;
+        }
+
+        &:not(.error):focus,
+        &.containsValue {
+          border-bottom-color: $pure-white;
+        }
+      }
+
+      .messageError {
+        @include bodyS();
+        width: 50%;
+        padding-bottom: 17px;
+        border-bottom: 1px solid $red;
+        color: $red;
+        text-align: center;
+
+        &.hidden {
+          display: none;
+        }
+      }
+    }
+
+    .submit {
+      @include bodyM();
+      margin-top: 16px;
+      color: $pure-white;
+      border-radius: 6px;
+      background-color: $red;
+      border-width: 0px;
+      height: 48px;
+      cursor: pointer;
+
+      &:hover {
+        color: $dark-blue;
+        background-color: $pure-white;
+      }
+      &:focus {
+        opacity: 0.8;
+      }
+    }
+
+    .p {
+      @include bodyM();
+      text-align: center;
+
+      .link {
+        color: $red;
+      }
+    }
+  }
+}

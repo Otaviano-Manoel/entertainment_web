@@ -17,6 +17,7 @@ $semi-dark-blue: #161d2f;
 
 @mixin headingL {
   @include _font-weight(300);
+  letter-spacing: -0.5px;
   font-size: 32px;
 }
 
