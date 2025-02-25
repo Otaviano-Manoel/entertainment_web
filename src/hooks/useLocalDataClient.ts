@@ -1,6 +1,5 @@
 import { Client } from "@/Interface/client";
 import { clientData } from "@/Interface/clientData";
-import React from "react";
 
 const NAME_LOCAL_DATA_CLIENT = "dataclient";
 
@@ -38,7 +37,13 @@ const useLocalDataClient = () => {
       const index = getEmailIfExists(email, data);
       if (index !== -1) {
         const c = data[index];
-        if (password === c.password) return { email: c.email, image: c.image };
+        if (password === c.password)
+          return {
+            email: c.email,
+            image: c.image,
+            expire: c.expire,
+            name: c.name,
+          };
       }
     }
     return null;

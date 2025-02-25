@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import React from "react";
 import styles from "@/app/login/login.module.scss";
@@ -9,6 +8,7 @@ import { validState } from "@/enum/validState";
 import useLocalDataClient from "@/hooks/useLocalDataClient";
 import { useClient } from "@/context/useClient";
 import { useRouter } from "next/navigation";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const Login = () => {
   const { email } = useEmail();
@@ -16,6 +16,11 @@ const Login = () => {
   const { login } = useLocalDataClient();
   const { setClient } = useClient();
   const navigate = useRouter();
+  const { data: session } = useSession();
+
+  const handleSignIn = async () => {
+    signIn("google", { callbackUrl: "/login/session" });
+  };
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,7 +30,9 @@ const Login = () => {
     const client = login(email.email, password.password);
     if (client) {
       setClient(client);
-      navigate.push("/");
+      if (session) {
+        signOut({ callbackUrl: "/" });
+      } else navigate.push("/");
     } else alert("This user does not exist.");
   };
 
@@ -55,7 +62,8 @@ const Login = () => {
             className={`${styles.input} ${
               email.isValid === validState.ERROR ? styles.error : ""
             }   ${
-              email.isNullOrEmpty === validState.ACCEPT && validState.ACCEPT
+              email.isNullOrEmpty === validState.ACCEPT &&
+              email.isValid === validState.ACCEPT
                 ? styles.containsValue
                 : ""
             }`}
@@ -122,7 +130,7 @@ const Login = () => {
           </a>
         </p>
 
-        <a className={styles.gmail} onClick={() => {}}>
+        <a className={styles.gmail} onClick={handleSignIn}>
           <Image src={"./gmail.svg"} alt={""} width={48} height={48} />
         </a>
       </form>

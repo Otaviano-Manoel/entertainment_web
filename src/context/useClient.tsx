@@ -8,13 +8,13 @@ interface ClientContextType {
 }
 
 const clientContext = createContext<ClientContextType | null>(null);
-const LOCAL_NAME = "client";
+export const LOCAL_NAME_CLIENT_LOGGED = "client";
 
 export const ClientProvider = ({ children }) => {
   const [client, setClientState] = useState<Client | null>(null);
 
   useEffect(() => {
-    const storedClient = localStorage.getItem(LOCAL_NAME);
+    const storedClient = localStorage.getItem(LOCAL_NAME_CLIENT_LOGGED);
     if (storedClient) {
       setClientState(JSON.parse(storedClient));
     }
@@ -22,9 +22,9 @@ export const ClientProvider = ({ children }) => {
 
   const setClient = (client: Client | null) => {
     if (client) {
-      localStorage.setItem(LOCAL_NAME, JSON.stringify(client));
+      localStorage.setItem(LOCAL_NAME_CLIENT_LOGGED, JSON.stringify(client));
     } else {
-      localStorage.removeItem(LOCAL_NAME);
+      localStorage.removeItem(LOCAL_NAME_CLIENT_LOGGED);
     }
     setClientState(client);
   };

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { RefObject, useRef } from "react";
+import React, { useRef } from "react";
 import styles from "@/app/login/login.module.scss";
 import useEmail from "@/hooks/useEmail";
 import usePassword from "@/hooks/usePassword";
@@ -8,6 +8,7 @@ import { validState } from "@/enum/validState";
 import useRepeatPassword from "@/hooks/useRepeatPassword";
 import useLocalDataClient from "@/hooks/useLocalDataClient";
 import { clientData } from "@/Interface/clientData";
+import moment from "moment";
 
 const SignUp = () => {
   const { email } = useEmail();
@@ -21,12 +22,17 @@ const SignUp = () => {
 
     if (!validAll()) return;
 
+    const date = moment();
+    const newDate = date.add(1, "days");
+    const formattedDate = newDate.format("MMMM Do YYYY, h:mm:ss a");
+
     const client: clientData = {
+      name: "Fox",
       email: email.email,
       image: "./image-avatar.png",
       password: password.password,
+      expire: formattedDate,
     };
-    
 
     addDataClient(client);
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/globals.scss";
-import { ClientProvider } from "@/context/useClient";
+import Providers from "@/components/providers";
 
 export const metadata: Metadata = {
   title: "Entertainment web",
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ClientProvider>{children}</ClientProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
