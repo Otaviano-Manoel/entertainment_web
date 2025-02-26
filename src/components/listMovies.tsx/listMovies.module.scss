@@ -1,66 +1,49 @@
 @use "@/styles/variables.scss" as *;
 
-.trending {
-  margin-bottom: 40px;
-
-  .h1 {
+.list {
+  .title {
     @include headingL();
-    margin-bottom: 25px;
+    margin-bottom: 32px;
   }
 
-  .scroll_container {
-    overflow-x: auto;
-    white-space: nowrap;
+  .container_movie {
     display: flex;
-    scroll-behavior: smooth;
-    width: 90vw;
-    padding: 0px 5px 20px;
-    gap: 40px;
+    flex-wrap: wrap;
+    column-gap: 40px;
+    row-gap: 32px;
 
     .video {
       position: relative;
-      display: grid;
-      overflow: hidden;
       cursor: pointer;
-      grid-template-rows: repeat(2, 1fr);
-      border-radius: 8px;
-      min-width: 470px;
-      height: 230px;
 
       &:hover {
         .play {
-          height: 100%;
+          height: 175px;
         }
       }
 
       .cover {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
+        border-radius: 8px;
       }
 
       .play {
         position: absolute;
+        z-index: 5;
+        top: 0;
+        border-radius: 8px;
+        background-color: rgba($color: #000000, $alpha: 0.5);
+        width: 100%;
+        height: 0px;
         overflow: hidden;
+        transition: height 0.3s ease-in-out;
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 0;
-        background-color: rgba($color: #000000, $alpha: 0.5);
-        width: 100%;
-        height: 0%;
-        transition: height 0.3s ease-in-out;
-
-        .icon {
-          width: 30px;
-          height: 30px;
-        }
+        cursor: pointer;
 
         .button {
           display: flex;
           align-items: center;
-          cursor: pointer;
           gap: 19px;
           background-color: rgba($color: $pure-white, $alpha: 0.25);
           border-width: 0;
@@ -76,16 +59,17 @@
       }
 
       .bookmark {
-        justify-self: flex-end;
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: rgba($color: $dark-blue, $alpha: 0.5);
+        top: 16;
+        right: 16;
+        z-index: 5;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 37px;
-        height: 37px;
-        margin: 24px;
-        background-color: rgba($color: $dark-blue, $alpha: 0.5);
-        z-index: 1;
-        border-radius: 50%;
 
         &:not(.selected):hover {
           background-color: $pure-white;
@@ -97,8 +81,8 @@
 
         .icon {
           mask-image: url("../../../public/icon-bookmark-empty.svg");
-          width: 17px;
-          height: 19px;
+          width: 12px;
+          height: 14px;
           mask-size: contain;
           mask-repeat: no-repeat;
           background-color: $pure-white;
@@ -113,17 +97,11 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        gap: 4px;
-        padding: 24px;
-
-        background: linear-gradient(
-          to bottom,
-          rgba($color: #000, $alpha: 5%),
-          rgba($color: #000, $alpha: 75%)
-        );
+        gap: 5px;
+        margin-top: 8px;
 
         .p {
-          @include bodyM();
+          @include bodyS();
           opacity: 0.75;
           display: flex;
           align-items: center;
@@ -135,8 +113,8 @@
           }
         }
 
-        .title {
-          @include headingS();
+        .title_movie {
+          @include headingXS();
         }
       }
     }
@@ -144,49 +122,76 @@
 }
 
 @media (max-width: 768px) {
-  .trending {
+  .list {
     margin-left: 24px;
+
+    .title {
+      margin-bottom: 24px;
+    }
+
+    .container_movie {
+      column-gap: 15px;
+      row-gap: 24px;
+
+      .video {
+        &:hover {
+          .play {
+            height: 125px;
+          }
+        }
+
+        .cover {
+          width: 220px;
+          height: 140px;
+        }
+      }
+    }
   }
 }
 
 @media (max-width: 475px) {
-  .trending {
-    margin-left: 16px;
-    margin-bottom: 24px;
-
-    .h1 {
-      @include headingXL();
-      margin-bottom: 16px;
-    }
-
-    .scroll_container {
-      gap: 16px;
+  .list {
+    .container_movie {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 15px;
 
       .video {
-        min-width: 240px;
-        height: 140px;
-
         &:hover {
           .play {
-            height: 0%;
+            height: 0px;
           }
+        }
+
+        .cover {
+          width: 165px;
+          height: 110px;
         }
 
         .bookmark {
-          width: 37px;
-          height: 37px;
-          margin: 8px;
+          top: 8;
+          right: 8;
+        }
+
+        .icon {
+          width: 10px;
+          height: 10px;
         }
 
         .description {
-          padding: 16px;
-
           .p {
-            @include bodyXS();
+            @include bodyXXS();
+            gap: 6px;
+
+            .point {
+              border: 2px solid $pure-white;
+              border-radius: 50%;
+            }
           }
 
-          .title {
-            @include headingXXS();
+          .title_movie {
+            @include headingXS();
+            font-size: 14px;
           }
         }
       }

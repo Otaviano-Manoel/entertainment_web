@@ -61,3 +61,8 @@ $semi-dark-blue: #161d2f;
   @include _font-weight(300);
   font-size: 12px;
 }
+
+@mixin bodyXXS {
+  @include _font-weight(300);
+  font-size: 11px;
+}

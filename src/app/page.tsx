@@ -1,12 +1,16 @@
 "use client";
 import { useRouter } from "next/navigation";
 import styles from "./home.module.scss";
-import { useEffect, useRef, WheelEvent } from "react";
+import { useEffect } from "react";
 import { LOCAL_NAME_CLIENT_LOGGED, useClient } from "@/context/useClient";
 import moment from "moment";
-import Image from "next/image";
 import Nav from "@/components/nav/nav";
 import Trending from "@/components/trending/trending";
+import Search from "@/components/search/search";
+import ListMovies from "@/components/listMovies.tsx/listMovies";
+import Image from "next/image";
+
+import icon from "../../public/icon-test.svg";
 
 export default function Home() {
   const navigate = useRouter();
@@ -27,29 +31,14 @@ export default function Home() {
     <div className={styles.main}>
       <Nav client={client} page="home" />
 
+      <Image className={styles.svg} src={icon} height={30} width={30} alt="" />
+
       <main>
-        <label className={styles.search} htmlFor="search">
-          <Image
-            className={styles.icon}
-            src={"/icon-search.svg"}
-            alt=""
-            height={32}
-            width={32}
-          />
-          <input
-            className={styles.input}
-            type="search"
-            name="search"
-            id="search"
-            placeholder="Search for movies or TV series"
-          />
-        </label>
+        <Search />
 
         <Trending />
 
-        <div>
-          <h2>Recommended for you</h2>
-        </div>
+        <ListMovies />
       </main>
     </div>
   );

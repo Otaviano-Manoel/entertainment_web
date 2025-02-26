@@ -3,13 +3,14 @@
 .main {
   display: flex;
   height: 100vh;
+
+  .svg {
+    stroke: red;
+  }
 }
 
 @media (max-width: 768px) {
   .main {
     display: block;
   }
-}
-
-@media (max-width: 475px) {
 }
