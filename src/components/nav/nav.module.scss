@@ -1,0 +1,150 @@
+@use "@/styles/variables.scss" as *;
+
+.nav {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  justify-content: center;
+  border-radius: 20px;
+  margin: 32px;
+  padding: 32px;
+  background-color: $semi-dark-blue;
+
+  .logo {
+    justify-self: center;
+    margin-bottom: 75px;
+    width: 32px;
+    height: 26px;
+    .img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(1, 20px);
+    grid-template-rows: repeat(4, 20px);
+    justify-content: center;
+    gap: 40px;
+
+    .home,
+    .movies,
+    .series,
+    .bookmark {
+      .img {
+        width: 100%;
+        height: 100%;
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        background-color: $greyish-blue;
+
+        &.active {
+          background-color: $pure-white;
+        }
+      }
+    }
+
+    .home {
+      .img {
+        mask-image: url("../../../public/icon-nav-home.svg");
+      }
+    }
+
+    .movies {
+      .img {
+        mask-image: url("../../../public/icon-nav-movies.svg");
+      }
+    }
+
+    .series {
+      .img {
+        mask-image: url("../../../public/icon-nav-tv-series.svg");
+      }
+    }
+
+    .bookmark {
+      .img {
+        mask-image: url("../../../public/icon-nav-bookmark.svg");
+      }
+    }
+
+    .home:hover,
+    .movies:hover,
+    .series:hover,
+    .bookmark:hover {
+      .img {
+        background-color: $red;
+      }
+    }
+  }
+
+  .user {
+    align-self: flex-end;
+    overflow: hidden;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 1px solid $pure-white;
+    .img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    grid-template-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    width: auto;
+    height: 72px;
+    border-radius: 10px;
+    margin: 24px;
+    padding: 0px 20px;
+
+    .logo {
+      justify-self: flex-start;
+      margin-bottom: 0px;
+    }
+
+    .categories {
+      grid-template-columns: repeat(4, 20px);
+      grid-template-rows: repeat(1, 20px);
+      gap: 32px;
+    }
+
+    .user {
+      align-self: auto;
+      justify-self: flex-end;
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+
+@media (max-width: 475px) {
+  .nav {
+    width: auto;
+    height: 56px;
+    border-radius: 0px;
+    margin: 0px;
+    padding: 0px 16px;
+
+    .logo {
+      width: 25px;
+      height: 20px;
+    }
+
+    .categories {
+      grid-template-columns: repeat(4, 16px);
+      grid-template-rows: repeat(1, 16px);
+      gap: 24px;
+    }
+
+    .user {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import useLocalDataClient from "@/hooks/useLocalDataClient";
 import { useClient } from "@/context/useClient";
 import { useRouter } from "next/navigation";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 const Login = () => {
   const { email } = useEmail();
@@ -124,15 +125,15 @@ const Login = () => {
         </button>
         <p className={styles.p}>
           Don’t have an account?{" "}
-          <a className={styles.link} href="/signup">
+          <Link className={styles.link} href="/signup">
             {" "}
             Sign Up
-          </a>
+          </Link>
         </p>
 
-        <a className={styles.gmail} onClick={handleSignIn}>
+        <Link href={""} className={styles.gmail} onClick={handleSignIn}>
           <Image src={"./gmail.svg"} alt={""} width={48} height={48} />
-        </a>
+        </Link>
       </form>
     </main>
   );

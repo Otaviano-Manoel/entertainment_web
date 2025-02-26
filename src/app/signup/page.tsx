@@ -9,6 +9,7 @@ import useRepeatPassword from "@/hooks/useRepeatPassword";
 import useLocalDataClient from "@/hooks/useLocalDataClient";
 import { clientData } from "@/Interface/clientData";
 import moment from "moment";
+import Link from "next/link";
 
 const SignUp = () => {
   const { email } = useEmail();
@@ -29,7 +30,7 @@ const SignUp = () => {
     const client: clientData = {
       name: "Fox",
       email: email.email,
-      image: "./image-avatar.png",
+      image: "/image-avatar.png",
       password: password.password,
       expire: formattedDate,
     };
@@ -165,10 +166,10 @@ const SignUp = () => {
         </button>
         <p className={styles.p}>
           Already have an account?{" "}
-          <a ref={login} className={styles.link} href="/login">
+          <Link ref={login} className={styles.link} href="/login">
             {" "}
             Login
-          </a>
+          </Link>
         </p>
       </form>
     </main>

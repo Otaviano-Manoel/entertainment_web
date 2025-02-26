@@ -1,0 +1,15 @@
+@use "@/styles/variables.scss" as *;
+
+.main {
+  display: flex;
+  height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .main {
+    display: block;
+  }
+}
+
+@media (max-width: 475px) {
+}
