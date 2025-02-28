@@ -1,4 +1,5 @@
 @use "@/styles/variables.scss" as *;
+@use "@/styles/mixin.scss" as *;
 
 .search {
   display: flex;
@@ -8,7 +9,7 @@
   width: 485px;
 
   .input {
-    @include headingM();
+    @include headingL();
     background-color: transparent;
     border-width: 0;
     color: $pure-white;
@@ -37,6 +38,10 @@
     margin-bottom: 24px;
     margin-left: 16px;
     gap: 16px;
-    width: 380px;
+    width: 90%;
+
+    .input {
+      @include headingXL();
+    }
   }
 }

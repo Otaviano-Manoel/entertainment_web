@@ -1,20 +1,20 @@
 "use client";
 import { useRouter } from "next/navigation";
 import styles from "./home.module.scss";
-import { useEffect } from "react";
+import { SetStateAction, useEffect } from "react";
 import { LOCAL_NAME_CLIENT_LOGGED, useClient } from "@/context/useClient";
 import moment from "moment";
 import Nav from "@/components/nav/nav";
 import Trending from "@/components/trending/trending";
 import Search from "@/components/search/search";
-import ListMovies from "@/components/listMovies.tsx/listMovies";
-import Image from "next/image";
-
-import icon from "../../public/icon-test.svg";
+import ListVideos from "@/components/listMovies.tsx/listMovies";
+import UseDataVideo from "@/hooks/useDataVideo";
+import { VideoData } from "@/Interface/video";
 
 export default function Home() {
   const navigate = useRouter();
   const { client } = useClient();
+  const { filter, markBook, search } = UseDataVideo();
 
   useEffect(() => {
     if (client) {
@@ -31,14 +31,31 @@ export default function Home() {
     <div className={styles.main}>
       <Nav client={client} page="home" />
 
-      <Image className={styles.svg} src={icon} height={30} width={30} alt="" />
-
       <main>
-        <Search />
+        <Search
+          data={search.concatArray(
+            filter.getTrending(),
+            filter.getRecommended()
+          )}
+          search={search.search}
+          setSearch={search.setSearch}
+          markBook={markBook}
+        />
 
-        <Trending />
-
-        <ListMovies />
+        {search.search === "" ? (
+          <Trending markBook={markBook} data={filter.getTrending()} />
+        ) : (
+          <></>
+        )}
+        {search.search === "" ? (
+          <ListVideos
+            title="Recommended for you"
+            markBook={markBook}
+            data={filter.getRecommended()}
+          />
+        ) : (
+          <></>
+        )}
       </main>
     </div>
   );

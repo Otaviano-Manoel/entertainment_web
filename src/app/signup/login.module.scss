@@ -1,4 +1,4 @@
-@use "@/styles/variables.scss" as *;
+@use "@/styles/core.scss" as *;
 
 .main {
   display: flex;
@@ -21,7 +21,7 @@
     border-radius: 20px;
 
     .title {
-      @include headingL();
+      @include headingXL();
       margin-bottom: 16px;
     }
 

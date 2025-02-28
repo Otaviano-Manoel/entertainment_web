@@ -1,10 +1,11 @@
 @use "@/styles/variables.scss" as *;
+@use "@/styles/mixin.scss" as *;
 
 .trending {
   margin-bottom: 40px;
 
   .h1 {
-    @include headingL();
+    @include headingXL();
     margin-bottom: 25px;
   }
 
@@ -87,6 +88,12 @@
         z-index: 1;
         border-radius: 50%;
 
+        &.selected {
+          .icon {
+            mask-image: url("../../assets/icon-bookmark-full.svg");
+          }
+        }
+
         &:not(.selected):hover {
           background-color: $pure-white;
 
@@ -96,16 +103,9 @@
         }
 
         .icon {
-          mask-image: url("../../../public/icon-bookmark-empty.svg");
-          width: 17px;
-          height: 19px;
-          mask-size: contain;
-          mask-repeat: no-repeat;
+          @include mask(17px, 19px);
+          mask-image: url("../../assets/icon-bookmark-empty.svg");
           background-color: $pure-white;
-
-          &.selected {
-            mask-image: url("../../../public/icon-bookmark-full.svg");
-          }
         }
       }
 

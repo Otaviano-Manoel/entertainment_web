@@ -1,8 +1,9 @@
 @use "@/styles/variables.scss" as *;
+@use "@/styles/mixin.scss" as *;
 
 .list {
   .title {
-    @include headingL();
+    @include headingXL();
     margin-bottom: 32px;
   }
 
@@ -28,7 +29,6 @@
 
       .play {
         position: absolute;
-        z-index: 5;
         top: 0;
         border-radius: 8px;
         background-color: rgba($color: #000000, $alpha: 0.5);
@@ -39,7 +39,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
 
         .button {
           display: flex;
@@ -50,6 +49,7 @@
           border-radius: 28.5;
           padding: 9px;
           padding-right: 24px;
+          cursor: pointer;
 
           .p {
             @include headingXS();
@@ -71,24 +71,23 @@
         align-items: center;
         justify-content: center;
 
+        &.selected {
+          .icon {
+            mask-image: url("../../assets/icon-bookmark-full.svg");
+          }
+        }
+
+        .icon {
+          @include mask(12px, 14px);
+          mask-image: url("../../assets/icon-bookmark-empty.svg");
+          background-color: $pure-white;
+        }
+
         &:not(.selected):hover {
           background-color: $pure-white;
 
           .icon {
             background-color: black;
-          }
-        }
-
-        .icon {
-          mask-image: url("../../../public/icon-bookmark-empty.svg");
-          width: 12px;
-          height: 14px;
-          mask-size: contain;
-          mask-repeat: no-repeat;
-          background-color: $pure-white;
-
-          &.selected {
-            mask-image: url("../../../public/icon-bookmark-full.svg");
           }
         }
       }

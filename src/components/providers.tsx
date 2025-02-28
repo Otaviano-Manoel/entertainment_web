@@ -2,11 +2,14 @@
 
 import { SessionProvider } from "next-auth/react";
 import { ClientProvider } from "@/context/useClient";
+import { VideoDataProvider } from "@/context/useVideo";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <SessionProvider>
-      <ClientProvider>{children}</ClientProvider>
+      <VideoDataProvider>
+        <ClientProvider>{children}</ClientProvider>
+      </VideoDataProvider>
     </SessionProvider>
   );
 }

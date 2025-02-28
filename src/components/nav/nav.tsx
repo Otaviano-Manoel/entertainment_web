@@ -39,13 +39,17 @@ const Nav = (props: NavProps) => {
       </div>
       {props.client ? (
         <Link className={styles.user} href="/login">
-          <Image
-            className={styles.img}
-            src={props.client.image}
-            alt={""}
-            width={40}
-            height={40}
-          />
+          <div className={styles.background}>
+            <Image
+              className={styles.img}
+              src={props.client.image}
+              alt={""}
+              width={40}
+              height={40}
+            />
+          </div>
+
+          <p className={styles.name}>{props.client.name}</p>
         </Link>
       ) : (
         <></>

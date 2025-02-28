@@ -1,57 +1,70 @@
 import Image from "next/image";
 import React from "react";
 import styles from "./trending.module.scss";
+import { VideoData } from "@/Interface/video";
 
-const Trending = () => {
+interface TrendingProps {
+  data: VideoData[] | undefined;
+  markBook: (title: string) => void;
+}
+
+const Trending = (props: TrendingProps) => {
   return (
     <div className={styles.trending}>
       <h1 className={styles.h1}>Trending</h1>
       <div className={styles.scroll_container}>
-        <div className={styles.video}>
-          <Image
-            className={styles.cover}
-            src={"/large.jpg"}
-            height={230}
-            width={470}
-            alt=""
-          />
-          <div className={styles.play}>
-            <button type="button" className={styles.button}>
-              <Image
-                className={styles.icon}
-                src={"/icon-play.svg"}
-                alt=""
-                height={30}
-                width={30}
-              />
-              <p className={styles.p}>Play</p>
-            </button>
-          </div>
-
-          <div
-            className={`${styles.bookmark}  ${false ? styles.selected : ""}`}
-          >
-            <div
-              className={`${styles.icon}  ${false ? styles.selected : ""}`}
+        {props.data?.map((video) => (
+          <div key={video.title} className={styles.video}>
+            <Image
+              className={styles.cover}
+              src={video.thumbnail.trending.large}
+              height={230}
+              width={470}
+              alt=""
             />
+            <div className={styles.play}>
+              <button type="button" className={styles.button}>
+                <Image
+                  className={styles.icon}
+                  src={"/icon-play.svg"}
+                  alt=""
+                  height={30}
+                  width={30}
+                />
+                <p className={styles.p}>Play</p>
+              </button>
+            </div>
+
+            <div
+              className={`${styles.bookmark}  ${
+                video.isBookmarked ? styles.selected : ""
+              }`}
+              onClick={() => props.markBook(video.title)}
+            >
+              <div className={`${styles.icon}`} />
+            </div>
+            <div className={styles.description}>
+              <p className={styles.p}>
+                {video.year}
+                <span className={styles.point} />
+                <Image
+                  src={
+                    video.category === "Movie"
+                      ? "/icon-category-movie.svg"
+                      : "/icon-category-tv.svg"
+                  }
+                  alt=""
+                  height={12}
+                  width={12}
+                />
+                {video.category}
+                <span className={styles.point} />
+                {video.rating}
+              </p>
+              <h2 className={styles.title}>{video.title}</h2>
+            </div>
           </div>
-          <div className={styles.description}>
-            <p className={styles.p}>
-              2019
-              <span className={styles.point} />
-              <Image
-                src={"/icon-category-movie.svg"}
-                alt=""
-                height={12}
-                width={12}
-              />
-              Movie
-              <span className={styles.point} />
-              PG
-            </p>
-            <h2 className={styles.title}>Beyond Earth</h2>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
