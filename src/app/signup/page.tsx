@@ -37,7 +37,6 @@ const SignUp = () => {
 
     addDataClient(client);
 
-    console.log(client);
     alert("All emails and passwords are saved in the browser cache.");
 
     login.current?.click();
@@ -49,8 +48,6 @@ const SignUp = () => {
     const validRepeatPassword = repeatPassword.thisRepeatPasswordAccept(
       password.password
     );
-
-    console.log(validEmail, validPassword, validRepeatPassword);
 
     return validEmail && validPassword && validRepeatPassword;
   };

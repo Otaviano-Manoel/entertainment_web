@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import styles from "./listMovies.module.scss";
 import { VideoData } from "@/Interface/video";
+import { useWindowSize } from "react-use";
 
 interface ListVideosProps {
   data: VideoData[] | undefined;
@@ -10,6 +11,17 @@ interface ListVideosProps {
 }
 
 const ListVideos = (props: ListVideosProps) => {
+  const { width } = useWindowSize();
+
+  const getThumbnail = (video: VideoData) => {
+    if (width && width < 475) {
+      return video.thumbnail.regular.small;
+    } else if (width < 768) {
+      return video.thumbnail.regular.medium;
+    }
+    return video.thumbnail.regular.large;
+  };
+
   return (
     <div className={styles.list}>
       <h2 className={styles.title}>{props.title}</h2>
@@ -19,7 +31,7 @@ const ListVideos = (props: ListVideosProps) => {
           <div key={video.title} className={styles.video}>
             <Image
               className={styles.cover}
-              src={video.thumbnail.regular.large}
+              src={getThumbnail(video)}
               alt=""
               height={175}
               width={280}

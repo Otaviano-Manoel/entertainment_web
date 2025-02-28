@@ -41,8 +41,6 @@ const Login = () => {
     const validEmail = email.thisEmailAccept();
     const validPassword = password.thisPasswordAccept();
 
-    console.log(validEmail, validPassword);
-
     return validEmail && validPassword;
   };
 

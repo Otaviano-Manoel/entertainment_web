@@ -17,18 +17,15 @@
   font-size: $size;
 }
 
-/*headingL*/
 @mixin headingXL {
   @include _text-style(300, 32px);
   letter-spacing: -0.5px;
 }
 
-/*headingM*/
 @mixin headingL {
   @include _text-style(300, 24px);
 }
 
-/*headingXL*/
 @mixin headingM {
   @include _text-style(300, 20px);
   letter-spacing: -0.3px;

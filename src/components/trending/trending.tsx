@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import styles from "./trending.module.scss";
 import { VideoData } from "@/Interface/video";
+import { useWindowSize } from "react-use";
 
 interface TrendingProps {
   data: VideoData[] | undefined;
@@ -9,6 +10,13 @@ interface TrendingProps {
 }
 
 const Trending = (props: TrendingProps) => {
+  const { width } = useWindowSize();
+
+  const getThumbnail = (video: VideoData) => {
+    if (width && width < 475) return video.thumbnail.trending.small;
+
+    return video.thumbnail.trending.large;
+  };
   return (
     <div className={styles.trending}>
       <h1 className={styles.h1}>Trending</h1>
@@ -17,7 +25,7 @@ const Trending = (props: TrendingProps) => {
           <div key={video.title} className={styles.video}>
             <Image
               className={styles.cover}
-              src={video.thumbnail.trending.large}
+              src={getThumbnail(video)}
               height={230}
               width={470}
               alt=""
