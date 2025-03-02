@@ -17,10 +17,15 @@ const Trending = (props: TrendingProps) => {
 
     return video.thumbnail.trending.large;
   };
+
+  const getWidthScroll = () => {
+    if (width <= 768) return { width: width - 30 };
+    return { width: width - 185 };
+  };
   return (
     <div className={styles.trending}>
       <h1 className={styles.h1}>Trending</h1>
-      <div className={styles.scroll_container}>
+      <div className={styles.scroll_container} style={getWidthScroll()}>
         {props.data?.map((video) => (
           <div key={video.title} className={styles.video}>
             <Image
