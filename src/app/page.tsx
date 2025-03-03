@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import styles from "./home.module.scss";
-import { SetStateAction, useEffect } from "react";
+import { useEffect } from "react";
 import { LOCAL_NAME_CLIENT_LOGGED, useClient } from "@/context/useClient";
 import moment from "moment";
 import Nav from "@/components/nav/nav";
@@ -9,7 +9,6 @@ import Trending from "@/components/trending/trending";
 import Search from "@/components/search/search";
 import ListVideos from "@/components/listMovies.tsx/listMovies";
 import UseDataVideo from "@/hooks/useDataVideo";
-import { VideoData } from "@/Interface/video";
 
 export default function Home() {
   const navigate = useRouter();
@@ -26,10 +25,10 @@ export default function Home() {
   }, [client, navigate]);
 
   return (
-    <div className={styles.main}>
+    <div className={styles.page}>
       <Nav client={client} page="home" />
 
-      <main>
+      <main className={styles.main}>
         <Search
           data={search.concatArray(
             filter.getTrending(),
@@ -42,18 +41,14 @@ export default function Home() {
 
         {search.search === "" ? (
           <Trending markBook={markBook} data={filter.getTrending()} />
-        ) : (
-          <></>
-        )}
+        ) : null}
         {search.search === "" ? (
           <ListVideos
             title="Recommended for you"
             markBook={markBook}
             data={filter.getRecommended()}
           />
-        ) : (
-          <></>
-        )}
+        ) : null}
       </main>
     </div>
   );

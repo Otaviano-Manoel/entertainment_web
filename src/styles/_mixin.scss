@@ -50,6 +50,10 @@
   @include _text-style(500, 15px);
 }
 
+@mixin bodyXM {
+  @include _text-style(300, 16px);
+}
+
 @mixin bodyM {
   @include _text-style(300, 15px);
 }

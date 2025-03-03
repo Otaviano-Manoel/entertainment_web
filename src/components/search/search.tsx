@@ -30,6 +30,7 @@ const Search = (props: SearchProps) => {
           id="search"
           placeholder="Search for movies or TV series"
           onChange={(e) => props.setSearch(e.target.value)}
+          maxLength={45}
         />
       </label>
 
@@ -37,7 +38,7 @@ const Search = (props: SearchProps) => {
         <ListVideos
           title={`Found ${count ? count : 0} ${
             count === 1 ? "result" : "results"
-          } for ‘${props.search}’`}
+          } for '${props.search}'`}
           data={props.data}
           markBook={props.markBook}
         />

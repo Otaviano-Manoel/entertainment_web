@@ -3,18 +3,13 @@
 
 .search {
   display: flex;
-  margin-top: 60px;
-  margin-bottom: 30px;
+  margin: 32px 36px 34px 0px;
   gap: 24px;
-  width: 485px;
 
   .input {
     @include headingL();
-    background-color: transparent;
-    border-width: 0;
     color: $pure-white;
-    outline: none;
-    padding-bottom: 15px;
+    padding-bottom: 14px;
     width: 100%;
 
     &:focus {
@@ -23,25 +18,29 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $tablet) {
   .search {
-    margin-top: 33px;
-    margin-bottom: 33px;
-    margin-left: 24px;
-    width: 380px;
+    gap: 28px;
+    .input {
+      &:focus {
+        border: none;
+      }
+    }
   }
 }
 
 @media (max-width: 475px) {
   .search {
-    margin-top: 24px;
-    margin-bottom: 24px;
-    margin-left: 16px;
+    margin: 24px 16px;
     gap: 16px;
-    width: 90%;
 
     .input {
-      @include headingXL();
+      @include bodyXM();
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
     }
   }
 }

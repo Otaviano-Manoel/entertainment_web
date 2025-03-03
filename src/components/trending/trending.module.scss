@@ -10,6 +10,7 @@
   }
 
   .scroll_container {
+    width: calc(100vw - 180px);
     overflow-x: auto;
     white-space: nowrap;
     display: flex;
@@ -145,6 +146,9 @@
 @media (max-width: 768px) {
   .trending {
     margin-left: 24px;
+    .scroll_container {
+      width: 100%;
+    }
   }
 }
 

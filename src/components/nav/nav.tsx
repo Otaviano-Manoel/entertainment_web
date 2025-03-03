@@ -44,8 +44,8 @@ const Nav = (props: NavProps) => {
               className={styles.img}
               src={props.client.image}
               alt={""}
-              width={40}
-              height={40}
+              width={32}
+              height={26}
             />
           </div>
 
