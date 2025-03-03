@@ -12,7 +12,7 @@ const Series = () => {
   const { filter, markBook, search } = UseDataVideo();
 
   return (
-    <div className={styles.main}>
+    <div className={styles.page}>
       <Nav client={client} page="series" />
 
       <main>

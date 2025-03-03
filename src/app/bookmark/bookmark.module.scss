@@ -1,20 +1,13 @@
-.main {
-  display: flex;
-  padding-bottom: 40px;
+@use "@/styles/page.scss" as *;
 
+.page {
   .breakLine {
     height: 48px;
   }
 }
 
 @media (max-width: 768px) {
-  .main {
-    display: block;
-  }
-}
-
-@media (max-width: 768px) {
-  .main {
+  .page {
     .breakLine {
       height: 24px;
     }
