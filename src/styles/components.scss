@@ -1,0 +1,69 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/mixin.scss" as *;
+
+@mixin bookmark($top, $right) {
+  @include flex(row, center, center);
+  position: absolute;
+  top: $top;
+  right: $right;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba($color: $dark-blue, $alpha: 0.5);
+  z-index: 1;
+
+  &.selected {
+    .icon {
+      mask-image: url("../assets/icon-bookmark-full.svg");
+    }
+  }
+
+  .icon {
+    @include mask(12px, 14px);
+    mask-image: url("../assets/icon-bookmark-empty.svg");
+    background-color: $pure-white;
+  }
+
+  &:not(.selected):hover {
+    background-color: $pure-white;
+
+    .icon {
+      background-color: black;
+    }
+  }
+
+  @media (max-width: $mobile) {
+    top: 8px;
+    right: 8px;
+  }
+}
+
+@mixin play() {
+  @include flex(row, center, center);
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  transition: height 0.3s ease-in-out;
+  width: 100%;
+  height: 0%;
+
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .button {
+    @include flex(row, center, center);
+    cursor: pointer;
+    gap: 19px;
+    background-color: rgba($color: $pure-white, $alpha: 0.25);
+    border-radius: 28.5;
+    padding: 9px 24px 9px 9px;
+
+    .p {
+      @include headingXS();
+      color: $pure-white;
+    }
+  }
+}

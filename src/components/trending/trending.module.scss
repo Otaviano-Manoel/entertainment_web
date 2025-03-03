@@ -1,5 +1,6 @@
 @use "@/styles/variables.scss" as *;
 @use "@/styles/mixin.scss" as *;
+@use "@/styles/components.scss" as *;
 
 .trending {
   margin-bottom: 40px;
@@ -10,20 +11,19 @@
   }
 
   .scroll_container {
-    width: calc(100vw - 180px);
+    width: calc(100vw - 170px);
+    display: flex;
     overflow-x: auto;
     white-space: nowrap;
-    display: flex;
     scroll-behavior: smooth;
-    padding: 0px 10px 20px;
+    padding: 0px 5px 12px 0px;
     gap: 40px;
 
     .video {
+      @include flex(row, auto, end);
       position: relative;
-      display: grid;
       overflow: hidden;
       cursor: pointer;
-      grid-template-rows: repeat(2, 1fr);
       border-radius: 8px;
       min-width: 470px;
       height: 230px;
@@ -42,78 +42,17 @@
       }
 
       .play {
-        position: absolute;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 0;
-        background-color: rgba($color: #000000, $alpha: 0.5);
-        width: 100%;
-        height: 0%;
-        transition: height 0.3s ease-in-out;
-
-        .icon {
-          width: 30px;
-          height: 30px;
-        }
-
-        .button {
-          display: flex;
-          align-items: center;
-          cursor: pointer;
-          gap: 19px;
-          background-color: rgba($color: $pure-white, $alpha: 0.25);
-          border-width: 0;
-          border-radius: 28.5;
-          padding: 9px;
-          padding-right: 24px;
-
-          .p {
-            @include headingXS();
-            color: $pure-white;
-          }
-        }
+        @include play();
       }
 
       .bookmark {
-        justify-self: flex-end;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 37px;
-        height: 37px;
-        margin: 24px;
-        background-color: rgba($color: $dark-blue, $alpha: 0.5);
-        z-index: 1;
-        border-radius: 50%;
-
-        &.selected {
-          .icon {
-            mask-image: url("../../assets/icon-bookmark-full.svg");
-          }
-        }
-
-        &:not(.selected):hover {
-          background-color: $pure-white;
-
-          .icon {
-            background-color: black;
-          }
-        }
-
-        .icon {
-          @include mask(17px, 19px);
-          mask-image: url("../../assets/icon-bookmark-empty.svg");
-          background-color: $pure-white;
-        }
+        @include bookmark(16px, 24px);
       }
 
       .description {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        gap: 4px;
+        @include flex(column, end, auto);
+        width: 100%;
+        gap: 3px;
         padding: 24px;
 
         background: linear-gradient(
@@ -125,8 +64,7 @@
         .p {
           @include bodyM();
           opacity: 0.75;
-          display: flex;
-          align-items: center;
+          @include flex(row, start, center);
           gap: 8px;
 
           .point {
@@ -145,20 +83,27 @@
 
 @media (max-width: 768px) {
   .trending {
-    margin-left: 24px;
     .scroll_container {
-      width: 100%;
+      width: calc(100vw - 30px);
+
+      .video {
+        &:hover {
+          .play {
+            height: 0%;
+          }
+        }
+      }
     }
   }
 }
 
 @media (max-width: 475px) {
   .trending {
-    margin-left: 16px;
-    margin-bottom: 24px;
+    width: auto;
+    margin: 0px 0px 24px 16px;
 
     .h1 {
-      @include headingXL();
+      @include headingM();
       margin-bottom: 16px;
     }
 
@@ -168,18 +113,6 @@
       .video {
         min-width: 240px;
         height: 140px;
-
-        &:hover {
-          .play {
-            height: 0%;
-          }
-        }
-
-        .bookmark {
-          width: 37px;
-          height: 37px;
-          margin: 8px;
-        }
 
         .description {
           padding: 16px;

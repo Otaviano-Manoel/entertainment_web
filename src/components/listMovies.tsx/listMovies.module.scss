@@ -1,5 +1,6 @@
 @use "@/styles/variables.scss" as *;
 @use "@/styles/mixin.scss" as *;
+@use "@/styles/components.scss" as *;
 
 .list {
   .title {
@@ -28,82 +29,22 @@
       }
 
       .play {
-        position: absolute;
-        top: 0;
-        border-radius: 8px;
-        background-color: rgba($color: #000000, $alpha: 0.5);
-        width: 100%;
-        height: 0px;
-        overflow: hidden;
-        transition: height 0.3s ease-in-out;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .button {
-          display: flex;
-          align-items: center;
-          gap: 19px;
-          background-color: rgba($color: $pure-white, $alpha: 0.25);
-          border-width: 0;
-          border-radius: 28.5;
-          padding: 9px;
-          padding-right: 24px;
-          cursor: pointer;
-
-          .p {
-            @include headingXS();
-            color: $pure-white;
-          }
-        }
+        @include play();
       }
 
       .bookmark {
-        position: absolute;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background-color: rgba($color: $dark-blue, $alpha: 0.5);
-        top: 16;
-        right: 16;
-        z-index: 5;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &.selected {
-          .icon {
-            mask-image: url("../../assets/icon-bookmark-full.svg");
-          }
-        }
-
-        .icon {
-          @include mask(12px, 14px);
-          mask-image: url("../../assets/icon-bookmark-empty.svg");
-          background-color: $pure-white;
-        }
-
-        &:not(.selected):hover {
-          background-color: $pure-white;
-
-          .icon {
-            background-color: black;
-          }
-        }
+        @include bookmark(16px, 16px);
       }
 
       .description {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
+        @include flex(column, end, auto);
         gap: 5px;
         margin-top: 8px;
 
         .p {
           @include bodyS();
           opacity: 0.75;
-          display: flex;
-          align-items: center;
+          @include flex(row, start, center);
           gap: 8px;
 
           .point {
@@ -120,22 +61,20 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $tablet) {
   .list {
-    margin-left: 24px;
-
     .title {
       margin-bottom: 24px;
     }
 
     .container_movie {
-      column-gap: 15px;
+      column-gap: 30px;
       row-gap: 24px;
 
       .video {
         &:hover {
           .play {
-            height: 125px;
+            height: 0px;
           }
         }
 
@@ -148,20 +87,15 @@
   }
 }
 
-@media (max-width: 475px) {
+@media (max-width: $mobile) {
   .list {
+    margin-left: 16px;
+
     .container_movie {
-      display: flex;
-      flex-wrap: wrap;
-      row-gap: 15px;
+      column-gap: 15px;
+      row-gap: 16px;
 
       .video {
-        &:hover {
-          .play {
-            height: 0px;
-          }
-        }
-
         .cover {
           width: 165px;
           height: 110px;
@@ -172,25 +106,19 @@
           right: 8;
         }
 
-        .icon {
-          width: 10px;
-          height: 10px;
-        }
-
         .description {
           .p {
             @include bodyXXS();
             gap: 6px;
 
-            .point {
-              border: 2px solid $pure-white;
-              border-radius: 50%;
+            .icon {
+              width: 10px;
+              height: 10px;
             }
           }
 
           .title_movie {
-            @include headingXS();
-            font-size: 14px;
+            @include headingXXS();
           }
         }
       }

@@ -64,6 +64,7 @@ const ListVideos = (props: ListVideosProps) => {
                 {video.year}
                 <span className={styles.point} />
                 <Image
+                  className={styles.icon}
                   src={
                     video.category === "Movie"
                       ? "/icon-category-movie.svg"
