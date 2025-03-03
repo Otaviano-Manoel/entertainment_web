@@ -1,11 +1,9 @@
-@use "@/styles/core.scss" as *;
+@use "@/styles/mixin.scss" as *;
+@use "@/styles/variables.scss" as *;
 
 .main {
-  display: flex;
-  flex-direction: column;
+  @include flex(column, center, center);
   height: 100vh;
-  align-items: center;
-  justify-content: center;
   gap: 82px;
   margin: 0px 24px;
 
@@ -31,15 +29,11 @@
 
       .input {
         @include bodyM();
-        background-color: transparent;
-        border-width: 0px;
         padding-bottom: 17px;
         padding-left: 16px;
         color: $pure-white;
         border-bottom: 1px solid $greyish-blue;
         cursor: pointer;
-
-        outline: none;
         width: 100%;
 
         &.error {
@@ -54,7 +48,7 @@
 
       .messageError {
         @include bodyS();
-        width: 50%;
+        padding-right: 17px;
         padding-bottom: 17px;
         border-bottom: 1px solid $red;
         color: $red;
@@ -68,13 +62,12 @@
 
     .submit {
       @include bodyM();
-      margin-top: 16px;
-      color: $pure-white;
-      border-radius: 6px;
       background-color: $red;
-      border-width: 0px;
-      height: 48px;
+      color: $pure-white;
       cursor: pointer;
+      margin-top: 16px;
+      border-radius: 6px;
+      height: 48px;
 
       &:hover {
         color: $dark-blue;
@@ -92,6 +85,11 @@
       .link {
         color: $red;
       }
+    }
+
+    .gmail {
+      @include flex(row, center, center);
+      cursor: pointer;
     }
   }
 }

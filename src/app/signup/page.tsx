@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import React, { useRef } from "react";
-import styles from "@/app/login/login.module.scss";
 import useEmail from "@/hooks/useEmail";
 import usePassword from "@/hooks/usePassword";
 import { validState } from "@/enum/validState";
@@ -10,6 +9,7 @@ import useLocalDataClient from "@/hooks/useLocalDataClient";
 import { clientData } from "@/Interface/clientData";
 import moment from "moment";
 import Link from "next/link";
+import styles from "./signup.module.scss";
 
 const SignUp = () => {
   const { email } = useEmail();

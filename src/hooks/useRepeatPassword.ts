@@ -7,9 +7,12 @@ const useRepeatPassword = () => {
   const [isNullOrEmpty, setIsNullOrEmpty] = useState(validState.NOT_EDITING);
 
   const validRepeatPassword = (password: string): boolean => {
-    const isValid = repeatPassword === password;
-    setIsValid(isValid ? validState.ACCEPT : validState.ERROR);
-    return isValid;
+    if (password === "" || repeatPassword !== password) {
+      setIsValid(validState.ERROR);
+      return false;
+    }
+    setIsValid(validState.ACCEPT);
+    return true;
   };
 
   const handleIsNullOrEmpty = (): boolean => {
