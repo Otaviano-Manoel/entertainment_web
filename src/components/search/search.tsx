@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { SetStateAction } from "react";
 import styles from "./search.module.scss";
-import ListVideos from "../listMovies.tsx/listMovies";
+import ListVideos from "../gridMovies.tsx/gridMovies";
 import { VideoData } from "@/Interface/video";
 
 interface SearchProps {

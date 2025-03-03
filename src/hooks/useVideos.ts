@@ -1,9 +1,9 @@
-import { useVideoData } from "@/context/useVideo";
+import { useDataVideo } from "@/context/useDataVideo";
 import { VideoData } from "@/Interface/video";
 import { useState } from "react";
 
 const UseDataVideo = () => {
-  const { data, setData } = useVideoData();
+  const { data, setData } = useDataVideo();
   const [search, setSearch] = useState<string>("");
 
   const searchVideo = (videoTitle: string) => {

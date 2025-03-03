@@ -7,8 +7,8 @@ import moment from "moment";
 import Nav from "@/components/nav/nav";
 import Trending from "@/components/trending/trending";
 import Search from "@/components/search/search";
-import ListVideos from "@/components/listMovies.tsx/listMovies";
-import UseDataVideo from "@/hooks/useDataVideo";
+import ListVideos from "@/components/gridMovies.tsx/gridMovies";
+import UseDataVideo from "@/hooks/useVideos";
 
 export default function Home() {
   const navigate = useRouter();

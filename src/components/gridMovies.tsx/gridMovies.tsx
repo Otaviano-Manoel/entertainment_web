@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import styles from "./listMovies.module.scss";
+import styles from "./gridMovies.module.scss";
 import { VideoData } from "@/Interface/video";
 import { useWindowSize } from "react-use";
 

@@ -1,9 +1,9 @@
 "use client";
-import ListVideos from "@/components/listMovies.tsx/listMovies";
+import ListVideos from "@/components/gridMovies.tsx/gridMovies";
 import Nav from "@/components/nav/nav";
 import Search from "@/components/search/search";
 import { useClient } from "@/context/useClient";
-import UseDataVideo from "@/hooks/useDataVideo";
+import UseDataVideo from "@/hooks/useVideos";
 import React from "react";
 import styles from "./bookmark.module.scss";
 

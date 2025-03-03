@@ -35,11 +35,11 @@ export const VideoDataProvider = ({ children }) => {
   );
 };
 
-export const useVideoData = () => {
+export const useDataVideo = () => {
   const context = useContext(videoDataContext);
 
   if (!context) {
-    throw new Error("useVideoData must be used within an VideoDataProvider");
+    throw new Error("useDataVideo must be used within an VideoDataProvider");
   }
 
   return context;
