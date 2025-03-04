@@ -163,7 +163,7 @@ const SignUp = () => {
         </button>
         <p className={styles.p}>
           Already have an account?{" "}
-          <Link ref={login} className={styles.link} href="/login">
+          <Link ref={login} className={styles.link} href="/login" aria-label="Login">
             {" "}
             Login
           </Link>

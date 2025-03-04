@@ -50,7 +50,7 @@ const Nav = (props: NavProps) => {
         </Link>
       </div>
       {props.client ? (
-        <Link className={styles.user} href="/login">
+        <Link className={styles.user} href="/login" aria-label="Go to login">
           <div className={styles.background}>
             <Image
               className={styles.img}

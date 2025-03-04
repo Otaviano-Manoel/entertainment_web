@@ -123,13 +123,18 @@ const Login = () => {
         </button>
         <p className={styles.p}>
           Don’t have an account?{" "}
-          <Link className={styles.link} href="/signup">
+          <Link className={styles.link} href="/signup" aria-label="Signup">
             {" "}
             Sign Up
           </Link>
         </p>
 
-        <Link href={""} className={styles.gmail} onClick={handleSignIn}>
+        <Link
+          href={""}
+          className={styles.gmail}
+          onClick={handleSignIn}
+          aria-label="Gmail"
+        >
           <Image
             src={"./gmail.svg"}
             alt={"Gmail icon"}
