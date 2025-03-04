@@ -20,6 +20,7 @@ export default function Home() {
       if (moment().isAfter(client.expire)) {
         localStorage.removeItem(LOCAL_NAME_CLIENT_LOGGED);
         navigate.push("/login");
+      } else {
       }
     }
   }, [client, navigate]);

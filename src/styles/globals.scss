@@ -7,6 +7,25 @@ body {
   background: $dark-blue;
   -webkit-font-smoothing: antialiased;
   padding: 32px 0px 32px 32px;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: $dark-blue;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $greyish-blue;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $semi-dark-blue;
 }
 
 * {

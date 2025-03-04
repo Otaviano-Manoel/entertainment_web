@@ -1,5 +1,6 @@
 "use client";
 import { Client } from "@/Interface/client";
+import moment from "moment";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface ClientContextType {
@@ -21,6 +22,16 @@ export const ClientProvider: React.FC<ClientProviderType> = ({ children }) => {
     const storedClient = localStorage.getItem(LOCAL_NAME_CLIENT_LOGGED);
     if (storedClient) {
       setClientState(JSON.parse(storedClient));
+    } else {
+      const date = moment();
+      const newDate = date.add(1, "days");
+      const formattedDate = newDate.format("MMMM Do YYYY, h:mm:ss a");
+      setClient({
+        email: "example@gmail.com",
+        image: "/image-avatar.png",
+        name: "example",
+        expire: formattedDate,
+      });
     }
   }, []);
 

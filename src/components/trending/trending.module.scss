@@ -11,12 +11,12 @@
   }
 
   .scroll_container {
-    width: calc(100vw - 170px);
+    width: calc(100vw - 180px);
     display: flex;
     overflow-x: auto;
     white-space: nowrap;
     scroll-behavior: smooth;
-    padding: 0px 5px 12px 0px;
+    padding: 0px 20px 12px 0px;
     gap: 40px;
 
     .video {
