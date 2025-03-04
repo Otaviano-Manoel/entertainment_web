@@ -130,7 +130,12 @@ const Login = () => {
         </p>
 
         <Link href={""} className={styles.gmail} onClick={handleSignIn}>
-          <Image src={"./gmail.svg"} alt={""} width={48} height={48} />
+          <Image
+            src={"./gmail.svg"}
+            alt={"Gmail icon"}
+            width={48}
+            height={48}
+          />
         </Link>
       </form>
     </main>

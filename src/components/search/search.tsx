@@ -19,7 +19,7 @@ const Search = (props: SearchProps) => {
         <Image
           className={styles.icon}
           src={"/icon-search.svg"}
-          alt=""
+          alt="Search icon"
           height={32}
           width={32}
         />

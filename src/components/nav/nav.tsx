@@ -19,21 +19,33 @@ const Nav = (props: NavProps) => {
       <Image
         className={styles.logo}
         src={"/logo.svg"}
-        alt={""}
+        alt={"Logo"}
         width={32}
         height={26}
       />{" "}
       <div className={styles.categories}>
-        <Link className={styles.home} href="/">
+        <Link className={styles.home} href="/" aria-label="Go to home">
           <div className={`${styles.img} ${handleActive("home")}`} />
         </Link>
-        <Link className={styles.movies} href="/movies">
+        <Link
+          className={styles.movies}
+          href="/movies"
+          aria-label="Go to movies"
+        >
           <div className={`${styles.img}  ${handleActive("movies")}`} />
         </Link>
-        <Link className={styles.series} href="/series">
+        <Link
+          className={styles.series}
+          href="/series"
+          aria-label="Go to series"
+        >
           <div className={`${styles.img}  ${handleActive("series")}`} />
         </Link>
-        <Link className={styles.bookmark} href="/bookmark">
+        <Link
+          className={styles.bookmark}
+          href="/bookmark"
+          aria-label="Go to bookmark"
+        >
           <div className={`${styles.img}  ${handleActive("bookmark")}`} />
         </Link>
       </div>
@@ -43,7 +55,7 @@ const Nav = (props: NavProps) => {
             <Image
               className={styles.img}
               src={props.client.image}
-              alt={""}
+              alt={"User image"}
               width={32}
               height={26}
             />

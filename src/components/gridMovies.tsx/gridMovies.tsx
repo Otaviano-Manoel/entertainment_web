@@ -32,7 +32,7 @@ const ListVideos = (props: ListVideosProps) => {
             <Image
               className={styles.cover}
               src={getThumbnail(video)}
-              alt=""
+              alt="Video thumbnail"
               height={175}
               width={280}
             />
@@ -42,7 +42,7 @@ const ListVideos = (props: ListVideosProps) => {
                 <Image
                   className={styles.icon}
                   src={"/icon-play.svg"}
-                  alt=""
+                  alt="Play icon"
                   height={30}
                   width={30}
                 />
@@ -70,7 +70,7 @@ const ListVideos = (props: ListVideosProps) => {
                       ? "/icon-category-movie.svg"
                       : "/icon-category-tv.svg"
                   }
-                  alt=""
+                  alt="Movie category icon"
                   height={14}
                   width={12}
                 />

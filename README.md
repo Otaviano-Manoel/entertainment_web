@@ -50,8 +50,8 @@ Users should be able to:
 
 ## 🔗 Links
 
-- 🔗 **Solution URL:** [Frontend Mentor](https://www.frontendmentor.io/solutions/SEU-LINK)
-- 🌍 **Live Site URL:** [Acesse o site](https://SEU-SITE.com)
+- 🔗 **Solution URL:** [Frontend Mentor](https://www.frontendmentor.io/solutions/entertainment-web-CO9YcWVx14)
+- 🌍 **Live Site URL:** [Visit the website](https://entertainment-web-1pm9.onrender.com)
 
 ---
 

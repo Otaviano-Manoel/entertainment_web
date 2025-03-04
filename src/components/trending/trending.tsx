@@ -28,14 +28,14 @@ const Trending = (props: TrendingProps) => {
               src={getThumbnail(video)}
               height={230}
               width={470}
-              alt=""
+              alt="Video thumbnail"
             />
             <div className={styles.play}>
               <button type="button" className={styles.button}>
                 <Image
                   className={styles.icon}
                   src={"/icon-play.svg"}
-                  alt=""
+                  alt="Play icon"
                   height={30}
                   width={30}
                 />
@@ -61,7 +61,7 @@ const Trending = (props: TrendingProps) => {
                       ? "/icon-category-movie.svg"
                       : "/icon-category-tv.svg"
                   }
-                  alt=""
+                  alt="Movie category icon"
                   height={12}
                   width={12}
                 />
