@@ -56,6 +56,8 @@
   .button {
     @include flex(row, center, center);
     cursor: pointer;
+    width: 117px;
+    height: 48px;
     gap: 19px;
     background-color: rgba($color: $pure-white, $alpha: 0.25);
     border-radius: 28.5;
