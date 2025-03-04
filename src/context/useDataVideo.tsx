@@ -1,15 +1,21 @@
 "use client";
 import { VideoData } from "@/Interface/video";
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface VideoContextType {
   data: VideoData[] | undefined;
   setData: (data: VideoData[]) => void;
 }
 
+interface VideoProviderType {
+  children: React.ReactNode;
+}
+
 const videoDataContext = createContext<VideoContextType | null>(null);
 
-export const VideoDataProvider = ({ children }) => {
+export const VideoDataProvider: React.FC<VideoProviderType> = ({
+  children,
+}) => {
   const [data, setDataState] = useState<VideoData[] | undefined>();
 
   useEffect(() => {

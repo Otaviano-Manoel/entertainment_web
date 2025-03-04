@@ -1,16 +1,20 @@
 "use client";
 import { Client } from "@/Interface/client";
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface ClientContextType {
   client: Client | null;
   setClient: (client: Client) => void;
 }
 
+interface ClientProviderType {
+  children: React.ReactNode;
+}
+
 const clientContext = createContext<ClientContextType | null>(null);
 export const LOCAL_NAME_CLIENT_LOGGED = "client";
 
-export const ClientProvider = ({ children }) => {
+export const ClientProvider: React.FC<ClientProviderType> = ({ children }) => {
   const [client, setClientState] = useState<Client | null>(null);
 
   useEffect(() => {

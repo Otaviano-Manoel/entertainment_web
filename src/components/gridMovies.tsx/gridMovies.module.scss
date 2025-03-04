@@ -37,14 +37,14 @@
       }
 
       .description {
-        @include flex(column, end, auto);
+        @include flex(column, flex-end, auto);
         gap: 5px;
         margin-top: 8px;
 
         .p {
           @include bodyS();
           opacity: 0.75;
-          @include flex(row, start, center);
+          @include flex(row, flex-start, center);
           gap: 8px;
 
           .point {

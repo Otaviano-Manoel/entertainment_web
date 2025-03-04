@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-export const Session = () => {
+const Session = () => {
   const { data: session } = useSession();
   const { setClient } = useClient();
   const navigate = useRouter();
@@ -14,7 +14,7 @@ export const Session = () => {
     setClient({
       name: session.user!.name!,
       image: session.user!.image!,
-      email: session.user!.image!,
+      email: session.user!.email!,
       expire: session.expires,
     });
 
@@ -22,6 +22,8 @@ export const Session = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);
+
+  return null;
 };
 
 export default Session;
